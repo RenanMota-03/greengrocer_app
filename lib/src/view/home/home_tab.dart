@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer_app/src/config/custom_colors.dart';
 
-class HomeTab extends StatelessWidget {
+import '../../config/app_data.dart' as app_data;
+import 'components/category_tile.dart';
+
+class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  String selectedCategory = "Frutas";
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +77,44 @@ class HomeTab extends StatelessWidget {
                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
                 ),
               ),
+            ),
+          ),
+
+          Container(
+            padding: EdgeInsets.only(left: 25),
+            height: 40,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (_, index) {
+                return CategoryTile(
+                  onPressed: () {
+                    setState(() {
+                      selectedCategory = app_data.categoryList[index];
+                    });
+                  },
+                  category: app_data.categoryList[index],
+                  isSelected: app_data.categoryList[index] == selectedCategory,
+                );
+              },
+              separatorBuilder: (_, index) => SizedBox(width: 10),
+              itemCount: app_data.categoryList.length,
+            ),
+          ),
+
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: BouncingScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 9 / 11.5,
+              ),
+              itemCount: app_data.items.length,
+              itemBuilder: (_, index) {
+                return Container(color: Colors.red);
+              },
             ),
           ),
         ],

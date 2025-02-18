@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greengrocer_app/src/auth/components/custom_text_field.dart';
+import 'package:greengrocer_app/src/view/auth/components/custom_text_field.dart';
 import 'package:greengrocer_app/src/config/custom_colors.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -26,9 +26,11 @@ class SignUpScreen extends StatelessWidget {
               Column(
                 children: [
                   Expanded(
-                    child: Text(
-                      "Cadastro",
-                      style: TextStyle(fontSize: 35, color: Colors.white),
+                    child: Center(
+                      child: Text(
+                        "Cadastro",
+                        style: TextStyle(fontSize: 35, color: Colors.white),
+                      ),
                     ),
                   ),
                   Container(
@@ -69,6 +71,7 @@ class SignUpScreen extends StatelessWidget {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18),
                               ),

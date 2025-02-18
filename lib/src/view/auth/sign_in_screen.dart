@@ -1,7 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:greengrocer_app/src/auth/components/custom_text_field.dart';
-import 'package:greengrocer_app/src/auth/sign_up_screen.dart';
+import 'package:greengrocer_app/src/view/auth/components/custom_text_field.dart';
+import 'package:greengrocer_app/src/view/auth/sign_up_screen.dart';
+import 'package:greengrocer_app/src/view/base/base_screen.dart';
 import 'package:greengrocer_app/src/config/custom_colors.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -16,10 +17,10 @@ class SignInScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text.rich(
                       TextSpan(
@@ -67,6 +68,7 @@ class SignInScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     CustomTextField(label: "Email", prefixIcon: Icons.email),
                     CustomTextField(
@@ -79,12 +81,22 @@ class SignInScreen extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18),
                           ),
                         ),
-                        onPressed: () {},
-                        child: Text("Entrar", style: TextStyle(fontSize: 18)),
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => BaseScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Entrar",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
 
@@ -141,7 +153,7 @@ class SignInScreen extends StatelessWidget {
                         },
                         child: Text(
                           'Criar conta',
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 18, color: Colors.green),
                         ),
                       ),
                     ),
